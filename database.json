@@ -1,0 +1,30 @@
+{
+  "Usuarios": [
+    {
+      "id": 1,
+      "nombre": "juanjo",
+      "email": "juanjo@gmail",
+      "password": "brrjuanjo1122"
+    },
+    {
+      "id": 2,
+      "nombre": "Alkapone",
+      "email": "alka@gmail.com",
+      "password": "Alkaponi1234"
+    },
+    {
+      "nombre": "Fernanfloo",
+      "email": "fernanding@fer.com",
+      "password": "fakefake1",
+      "confirmar": "fakefake1",
+      "id": 3
+    },
+    {
+      "nombre": "IceCube",
+      "email": "IceCube1@hotmail.com",
+      "password": "oldnavy3",
+      "confirmar": "oldnavy3",
+      "id": 4
+    }
+  ]
+}

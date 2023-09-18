@@ -1,129 +1,207 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+
+import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import APIInvoke from '../../utils/APIInvoke';
+import swal from "sweetalert2";
 
 const CrearCuenta = () => {
 
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmarPassword, setConfirmarPassword] = useState('');
+    const [usuario, setUsuario] = useState({
+        nombre: '',
+        email: '',
+        password: '',
+        confirmar: ''
+    })
 
-  const onChange = e => {
-    if(e.target.name === 'nombre'){
-      setNombre(e.target.value);
-    }
-    if(e.target.name === 'email'){
-      setEmail(e.target.value);
-    }
-    if(e.target.name === 'password'){
-      setPassword(e.target.value);
-    }
-    if(e.target.name === 'confirmarPassword'){
-      setConfirmarPassword(e.target.value);
-    }
-  }
+    const { nombre, email, password, confirmar } = usuario;
+    const onChange = (e) => {
+        setUsuario(
+            {
+                ...usuario,
+                [e.target.name]: e.target.value
 
-  return (
-    <div className="hold-transition register-page">
-      <div className="register-box">
+            }
+        )
+    }
 
-        <div className="register-logo">
-          <Link to="#">
-            <b>Registrarse</b>
-          </Link>
+    useEffect(() => {
+        document.getElementById("nombre").focus();
+    }, [])
+
+
+    const crearCuenta = async () => {
+
+        const verificarExistenciaUsuario = async (nombre) => {
+            try {
+                const response = await APIInvoke.invokeGET(
+                    `/usuario?nombre=${nombre}`
+                );
+                if (response && response.length > 0) {
+                    return true; // El usuario ya existe
+                }
+                return false; // El usuario no existe
+            } catch (error) {
+                console.error(error);
+                return false; // Maneja el error si la solicitud falla
+            }
+        };
+
+        if (password !== confirmar) {
+            const msg = "Las contraseñas son diferentes";
+            new swal({
+                title: 'Error',
+                text: msg,
+                icon: 'error',
+                buttons: {
+                    confirm: {
+                        text: 'Ok',
+                        value: true,
+                        visible: true,
+                        className: 'btn btn-danger',
+                        closeModal: true
+                    }
+                }
+            });
+        } else if (password.length < 6) {
+            const msg = 'La contraseña debe ser de al menos 6 caracteres'
+            new swal({
+                title: 'Error',
+                text: msg,
+                icon: 'error',
+                buttons: {
+                    confirm: {
+                        text: 'Ok',
+                        value: true,
+                        visible: true,
+                        className: 'btn btn-danger',
+                        closeModal: true
+                    }
+                }
+            });
+        } else {
+
+            const usuarioExistente = await verificarExistenciaUsuario(nombre);
+            const data = {
+                nombre: usuario.nombre,
+                email: usuario.email,
+                password: usuario.password,
+            };
+            const response = await APIInvoke.invokePOST(`/usuario`, data);
+              //capturar que el usuario ya existe
+            const mensaje = response.msg;
+
+            if (usuarioExistente) {
+                const msg = 'El usuario ya existe'
+                new swal({
+                    title: 'Error',
+                    text: msg,
+                    icon: 'error',
+                    buttons: {
+                        confirm: {
+                            text: 'Ok',
+                            value: true,
+                            visible: true,
+                            className: 'btn btn-danger',
+                            closeModal: true
+                        }
+                    }
+                });
+
+            } else {
+                const msg = 'El usuario fue creado correctamente.'
+                new swal({
+                    title: 'Información',
+                    text: msg,
+                    icon: 'success',
+                    buttons: {
+                        confirm: {
+                            text: 'Ok',
+                            value: true,
+                            visible: true,
+                            className: 'btn btn-danger',
+                            closeModal: true
+                        }
+                    }
+                });
+                setUsuario({
+                    nombre: '',
+                    email: '',
+                    password: '',
+                    confirmar: ''
+                })
+            }
+        }
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        crearCuenta();
+    }
+
+    return (
+        <div className="hold-transition login-page">
+            <div className="login-box">
+                <div className="login-logo">
+                    <Link to="#"><b>Crear</b> cuenta</Link>
+                </div>
+
+                <div className="card">
+                    <div className="card-body login-card-body">
+                        <p className="login-box-msg">Crea tu cuenta en Omegapetshop</p>
+                        <form onSubmit={onSubmit}>
+
+                            <div className="input-group mb-3">
+                                <input type="text" className="form-control" placeholder="Nombre" id="nombre" name="nombre" value={nombre} onChange={onChange} required />
+                                <div className="input-group-append">
+                                    <div className="input-group-text">
+                                        <span className="fas fa-user" />
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="input-group mb-3">
+                                <input type="email" className="form-control" placeholder="Email" id="email" name="email" value={email} onChange={onChange} required />
+                                <div className="input-group-append">
+                                    <div className="input-group-text">
+                                        <span className="fas fa-envelope" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="input-group mb-3">
+                                <input type="password" className="form-control" placeholder="Contraseña" id="password" name="password" value={password} onChange={onChange} required />
+                                <div className="input-group-append">
+                                    <div className="input-group-text">
+                                        <span className="fas fa-lock" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="input-group mb-3">
+                                <input type="password" className="form-control" placeholder="Confirmar Contraseña" id="confirmar" name="confirmar" value={confirmar} onChange={onChange} required />
+                                <div className="input-group-append">
+                                    <div className="input-group-text">
+                                        <span className="fas fa-lock" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="social-auth-links text-center mb-3">
+
+                                <button type="submit" className="btn btn-block btn-primary">
+                                    Crear
+                                </button>
+                                <Link to="/" className="btn btn-block btn-danger">
+                                    Regresar al login
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
-
-        <div className="card">
-          <div className="card-body register-card-body">
-            <p className="login-box-msg">Regístrate en Omega Pet Shop</p>
-
-            <form>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Nombre"
-                  name="nombre"
-                  value={nombre}
-                  onChange={onChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-user"></span>
-                  </div>
-                </div>
-              </div>  
-
-              <div className="input-group mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email"
-                  name="email"
-                  value={email}
-                  onChange={onChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-envelope"></span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Contraseña"
-                  name="password"
-                  value={password}
-                  onChange={onChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-lock"></span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Repita la contraseña"
-                  name="confirmarPassword"
-                  value={confirmarPassword}
-                  onChange={onChange}
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text">
-                    <span className="fas fa-lock"></span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-8">
-                  <div className="icheck-primary">
-                    <input type="checkbox" id="agreeTerms" name="terms" value="agree" />
-                    <label for="agreeTerms">
-                      Estoy de acuerdo con los <a href="#">términos</a>
-                    </label>
-                  </div>
-                </div>
-                <div className="col-4">
-                  <button type="submit" className="btn btn-primary btn-block">Registrarme</button>
-                </div>
-              </div>
-            </form>
-
-            <Link to="/" className="text-center">Ya estoy registrado</Link>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  )
+    )
 }
 
 export default CrearCuenta;
+
