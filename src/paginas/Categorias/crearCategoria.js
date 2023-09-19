@@ -26,9 +26,7 @@ const CrearCategoria = () => {
             ...categorias,
             [e.target.name]:e.target.value
         })
-
     }
-
     const crearCategoria = async () =>{
         const data ={
             nombre: categorias.nombre
@@ -69,7 +67,6 @@ const CrearCategoria = () => {
                 }
             }
         });
-
         setCategorias({
             nombre:'',
             direccion:''
@@ -80,7 +77,6 @@ const CrearCategoria = () => {
         e.preventDefault();
         crearCategoria()
     }
-
 
     return (
         <div className="wrapper">
@@ -130,5 +126,4 @@ const CrearCategoria = () => {
         </div>
     );
 }
-
 export default CrearCategoria;

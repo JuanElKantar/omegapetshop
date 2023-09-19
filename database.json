@@ -1,120 +1,76 @@
 {
   "Usuarios": [
     {
-      "id": 1,
-      "nombre": "juanjo",
-      "email": "juanjo@gmail",
-      "password": "brrjuanjo1122"
-    },
-    {
-      "id": 2,
-      "nombre": "Alkapone",
-      "email": "alka@gmail.com",
-      "password": "Alkaponi1234"
-    },
-    {
-      "nombre": "Fernanfloo",
-      "email": "fernanding@fer.com",
-      "password": "fakefake1",
-      "confirmar": "fakefake1",
-      "id": 3
-    },
-    {
-      "nombre": "IceCube",
-      "email": "IceCube1@hotmail.com",
-      "password": "oldnavy3",
-      "confirmar": "oldnavy3",
-      "id": 4
-    },
-    {
-      "nombre": "chato",
-      "email": "chat@gmail.com",
-      "password": "147147",
-      "id": 5
-    },
-    {
-      "nombre": "peperoni",
-      "email": "pepe@gmail.com",
-      "password": "123123",
-      "id": 6
-    },
-    {
-      "nombre": "peperoni",
-      "email": "pepe@gmail.com",
-      "password": "123123",
-      "id": 7
-    },
-    {
-      "nombre": "pepito",
-      "email": "pepe@gmail.com",
-      "password": "123123",
-      "id": 8
-    },
-    {
-      "nombre": "Alis",
-      "email": "aaa@gmail.com",
-      "password": "123456",
-      "id": 9
-    },
-    {
-      "nombre": "Admin",
-      "email": "admin@gmail.com",
-      "password": "admin123",
-      "id": 10,
-      "rol": 1
-    },
-    {
-      "nombre": "chato",
-      "email": "chat@gmail.com",
-      "password": "147147",
-      "id": 11
-    },
-    {
       "nombre": "cliente",
       "email": "cliente@c.com",
-      "password": "cliente",
-      "id": 12,
-      "rol": 2
-    },
-    {
-      "nombre": "sofia",
-      "email": "sofia@gmail.com",
-      "password": "123456",
-      "id": 13
-    },
-    {
-      "nombre": "chatooo",
-      "email": "chatoo@gmail.com",
-      "password": "11223344",
-      "id": 14
-    },
-    {
-      "nombre": "clienteprueba",
-      "email": "cli@c.com",
       "password": "111111",
       "rol": "cliente",
-      "id": 15
+      "id": 1
     },
     {
-      "nombre": "adminpro",
-      "email": "admina@gmail.com",
-      "password": "123111",
+      "nombre": "admin",
+      "email": "admin@a.com",
+      "password": "222222",
       "rol": "administrador",
-      "id": 16
+      "id": 2
     }
   ],
-  "Proyectos": [
+  "tiendas": [
     {
-      "id": 1,
-      "nombre": "shampoo"
+      "nombre": "g12",
+      "direccion": "calle 1",
+      "id": 1
     },
     {
-      "nombre": "shampou",
+      "nombre": "PetF",
+      "direccion": "calle 405",
       "id": 2
     },
     {
-      "id": 3,
-      "nombre": "peine"
+      "nombre": "dedede",
+      "direccion": "calle1",
+      "id": 3
+    }
+  ],
+  "productos": [
+    {
+      "idT": "1",
+      "idC": "2",
+      "nombre": "collar",
+      "precio": 12000,
+      "estado": false,
+      "id": 1
+    },
+    {
+      "idT": "2",
+      "idC": "1",
+      "nombre": "toallitas perro",
+      "precio": "8000",
+      "estado": false,
+      "id": 3
+    },
+    {
+      "idT": "3",
+      "idC": "ratata",
+      "nombre": "rata",
+      "precio": "455555",
+      "id": 4
+    }
+  ],
+  "categorias": [
+    {
+      "nombre": "cepillosperro",
+      "id": 1
+    }
+  ],
+  "ventas": [
+    {
+      "idP": "1",
+      "nombreProd": "Ringo",
+      "nombre": "Estiven",
+      "direccion": "carrera 6 ",
+      "telefono": "3112604202",
+      "id": 1
     }
   ]
 }

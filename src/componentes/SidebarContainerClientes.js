@@ -1,10 +1,9 @@
 import React from "react";
-
 import Logo from '../img/logoomegapet.png';
 import { Link } from "react-router-dom";
 import MenuClientes from "./MenuClientes";
 
-const SidebarContainer = () => {
+const SidebarContainerClientes = () => {
 
     
 return (
@@ -36,4 +35,4 @@ return (
 );
 };
 
-export default SidebarContainer;
+export default SidebarContainerClientes;

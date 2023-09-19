@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../componentes/Footer";
+import swal from "sweetalert2";
 import Navbar from "../../componentes/Navbar";
 import SidebarContainer from "../../componentes/SidebarContainer";
 import ContentHeader from "../../componentes/contentHeader";
 import APIInvoke from "../../utils/APIInvoke";
-import swal from "sweetalert2";
-
+import { useEffect, useState } from "react";
 
 const VisualizarCategorias = () => {
     const [ventas, setVentas] = useState([]);
@@ -123,7 +122,7 @@ const VisualizarCategorias = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {
+                            {
                                     ventas.map(item =>
                                         <tr key={item.id}>
                                             <td>{item.id}</td>

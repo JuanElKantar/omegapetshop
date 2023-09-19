@@ -1,14 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import ContentHeader from "../../componentes/contentHeader";
 import Footer from "../../componentes/Footer";
 import Navbar from "../../componentes/Navbar";
 import SidebarContainerClie from "../../componentes/SidebarContainerClientes";
+import { useEffect, useState } from "react";
 import APIInvoke from "../../utils/APIInvoke";
 import swal from "sweetalert2";
 
 
-const CompraProducto = () => {
+
+
+const CompraProd = () => {
 
     const navigate = useNavigate();
 
@@ -16,8 +18,10 @@ const { idVenta } = useParams();
 let arreglo = idVenta.split('@')
 const idProducto= arreglo[0]
 const nombreProducto = arreglo[1]
+const idTienda = arreglo[2]
+const nombreTienda = arreglo[3]
 
-const tituloPag = `Formulario de ompra`
+const tituloPag = `Formulario de compra`
 
 
 const [venta, setVentas] = useState({
@@ -59,7 +63,7 @@ const realizarVenta = async () => {
 
     if (idV===""){
         const msg = "No se pudo realizar la venta";
-        new swal({
+        swal({
             title: 'Error',
             text: msg,
             icon: 'error',
@@ -74,9 +78,9 @@ const realizarVenta = async () => {
             }
         });
 }else{
-    navigate("/visualizar-prod")
+    navigate("/home2")
     const msg = "La compra se ha realizado satisfactoriamente";
-    new swal({
+    swal({
         title: 'Información',
         text: msg,
         icon: 'success',
@@ -115,7 +119,7 @@ const onSubmit = (e) => {
                     titulo={tituloPag}
                     breadCrumb1={"Formulario compras"}
                     breadCrumb2={"Edición"}
-                    ruta1={`/visualizar-prod`}
+                    ruta1={`/visualizar-prod/${idTienda}@${nombreTienda}`}
                 />
                 <section className="content">
                     <div className="card">
@@ -162,4 +166,4 @@ const onSubmit = (e) => {
      );
 }
  
-export default CompraProducto;
+export default CompraProd;
