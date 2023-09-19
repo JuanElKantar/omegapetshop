@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './paginas/auth/login';
 import CrearCuenta from './paginas/auth/CrearCuenta';
+import Home from './paginas/Home';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/crear-cuenta" exact element={<CrearCuenta/>}/>
+          <Route path="/home" exact element={<Home/>}/>
         </Routes>
       </Router>
     </Fragment>

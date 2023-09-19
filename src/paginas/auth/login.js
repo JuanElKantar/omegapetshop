@@ -9,7 +9,7 @@ const Login =() =>{
 
 
     //Para redireccionar un componente a otro
-    const navigate= useNavigate();
+    const navigate= useNavigate();  
 
     
     //Definimos el estado inicial de las variables
@@ -37,7 +37,7 @@ const Login =() =>{
         const verificarExistenciaUsuario = async (email, password) => {
             try {
                 const response = await APIInvoke.invokeGET(
-                    `/usuario?email=${email}&password=${password}`
+                    `/Usuarios?email=${email}&password=${password}`
 
                 );
                 if (response && response.length > 0) {
@@ -109,7 +109,14 @@ const Login =() =>{
             <p className="login-box-msg">Bienvenido, ingrese sus credenciales</p>
             <form onSubmit={onSubmit}>
                 <div className="input-group mb-3">
-                <input type="email" className="form-control" placeholder="Email" id="email" name="email" value={email} onChange={onchange} required />
+                <input type="email"
+                     className="form-control" 
+                     placeholder="Email" 
+                     id="email" 
+                     name="email" 
+                     value={email} 
+                     onChange={onchange} required />
+
                 <div className="input-group-append">
                     <div className="input-group-text">
                         <span className="fas fa-envelope" />
@@ -117,7 +124,13 @@ const Login =() =>{
                 </div>
             </div>
             <div className="input-group mb-3">
-                <input type="password" className="form-control" placeholder="Contraseña" id="password" name="password" value={password} onChange={onchange} required/>
+                <input type="password" 
+                    className="form-control" 
+                    placeholder="Contraseña" 
+                    id="password" 
+                    name="password" 
+                    value={password} 
+                    onChange={onchange} required/>
                 <div className="input-group-append">
                     <div className="input-group-text">
                         <span className="fas fa-lock" />

@@ -34,7 +34,7 @@ const CrearCuenta = () => {
         const verificarExistenciaUsuario = async (nombre) => {
             try {
                 const response = await APIInvoke.invokeGET(
-                    `/usuario?nombre=${nombre}`
+                    `/Usuarios?nombre=${nombre}`
                 );
                 if (response && response.length > 0) {
                     return true; // El usuario ya existe
@@ -86,8 +86,8 @@ const CrearCuenta = () => {
                 email: usuario.email,
                 password: usuario.password,
             };
-            const response = await APIInvoke.invokePOST(`/usuario`, data);
-              //capturar que el usuario ya existe
+            const response = await APIInvoke.invokePOST(`/Usuarios`, data);
+              //console.log(response);
             const mensaje = response.msg;
 
             if (usuarioExistente) {
@@ -147,14 +147,14 @@ const CrearCuenta = () => {
 
                 <div className="card">
                     <div className="card-body login-card-body">
-                        <p className="login-box-msg">Crea tu cuenta en Omegapetshop</p>
+                        <p className="login-box-msg">Bienvenido, ingrese sus credenciales</p>
                         <form onSubmit={onSubmit}>
 
                             <div className="input-group mb-3">
                                 <input type="text" className="form-control" placeholder="Nombre" id="nombre" name="nombre" value={nombre} onChange={onChange} required />
                                 <div className="input-group-append">
                                     <div className="input-group-text">
-                                        <span className="fas fa-user" />
+                                        <span className="fa-solid fa-user" />
 
                                     </div>
                                 </div>
@@ -172,7 +172,7 @@ const CrearCuenta = () => {
                                 <input type="password" className="form-control" placeholder="Contraseña" id="password" name="password" value={password} onChange={onChange} required />
                                 <div className="input-group-append">
                                     <div className="input-group-text">
-                                        <span className="fas fa-lock" />
+                                        <span className="fa-solid fa-unlock" />
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@ const CrearCuenta = () => {
                                     Crear
                                 </button>
                                 <Link to="/" className="btn btn-block btn-danger">
-                                    Regresar al login
+                                    Regresar al omega
                                 </Link>
                             </div>
                         </form>
@@ -204,4 +204,3 @@ const CrearCuenta = () => {
 }
 
 export default CrearCuenta;
-

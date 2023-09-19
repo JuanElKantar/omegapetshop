@@ -25,6 +25,30 @@
       "password": "oldnavy3",
       "confirmar": "oldnavy3",
       "id": 4
+    },
+    {
+      "nombre": "chato",
+      "email": "chat@gmail.com",
+      "password": "147147",
+      "id": 5
+    },
+    {
+      "nombre": "peperoni",
+      "email": "pepe@gmail.com",
+      "password": "123123",
+      "id": 6
+    },
+    {
+      "nombre": "peperoni",
+      "email": "pepe@gmail.com",
+      "password": "123123",
+      "id": 7
+    },
+    {
+      "nombre": "pepito",
+      "email": "pepe@gmail.com",
+      "password": "123123",
+      "id": 8
     }
   ]
 }
