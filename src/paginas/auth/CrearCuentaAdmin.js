@@ -1,16 +1,17 @@
+
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import APIInvoke from '../../utils/APIInvoke';
 import swal from "sweetalert2";
 
-const CrearCuenta = () => {
+const CrearCuentaAdmin = () => {
 
     const [usuario, setUsuario] = useState({
         nombre: '',
         email: '',
         password: '',
         confirmar: '',
-        rol:2
+        rol:1
     })
 
     const { nombre, email, password, confirmar } = usuario;
@@ -34,7 +35,7 @@ const CrearCuenta = () => {
         const verificarExistenciaUsuario = async (nombre) => {
             try {
                 const response = await APIInvoke.invokeGET(
-                    `/Usuarios?nombre=${nombre}`
+                    `/usuario?nombre=${nombre}`
                 );
                 if (response && response.length > 0) {
                     return true; // El usuario ya existe
@@ -64,7 +65,7 @@ const CrearCuenta = () => {
             });
         } else if (password.length < 6) {
             const msg = 'La contraseña debe ser de al menos 6 caracteres'
-            new swal({
+            swal({
                 title: 'Error',
                 text: msg,
                 icon: 'error',
@@ -85,14 +86,16 @@ const CrearCuenta = () => {
                 nombre: usuario.nombre,
                 email: usuario.email,
                 password: usuario.password,
+                rol:1
             };
-            const response = await APIInvoke.invokePOST(`/Usuarios`, data);
+            console.log(data)
+            const response = await APIInvoke.invokePOST(`/usuario`, data);
               //console.log(response);
             const mensaje = response.msg;
 
             if (usuarioExistente) {
                 const msg = 'El usuario ya existe'
-                new swal({
+                swal({
                     title: 'Error',
                     text: msg,
                     icon: 'error',
@@ -127,7 +130,8 @@ const CrearCuenta = () => {
                     nombre: '',
                     email: '',
                     password: '',
-                    confirmar: ''
+                    confirmar: '',
+                    rol:1
                 })
             }
         }
@@ -142,7 +146,7 @@ const CrearCuenta = () => {
         <div className="hold-transition login-page">
             <div className="login-box">
                 <div className="login-logo">
-                    <Link to="#"><b>Crear</b> cuenta</Link>
+                    <Link to="#"><b>Crear</b> cuenta para admin</Link>
                 </div>
 
                 <div className="card">
@@ -190,7 +194,7 @@ const CrearCuenta = () => {
                                     Crear
                                 </button>
                                 <Link to="/" className="btn btn-block btn-danger">
-                                    Regresar al omega
+                                    Regresar al login
                                 </Link>
                             </div>
                         </form>
@@ -203,4 +207,4 @@ const CrearCuenta = () => {
     )
 }
 
-export default CrearCuenta;
+export default CrearCuentaAdmin;

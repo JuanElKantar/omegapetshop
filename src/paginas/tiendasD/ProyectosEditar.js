@@ -11,16 +11,19 @@ const ProtectosEditar = () => {
 
     const navigate=useNavigate();
 
-    const {idProyecto}=useParams();
-    let arreglo = idProyecto.split('@')
-    const nombreProyecto = arreglo[1]
+    const {idTienda}=useParams();
+    let arreglo = idTienda.split('@')
+    const nombreTienda= arreglo[1]
+    const direccionTIenda= arreglo[2]
 
 
-    const [proyecto, setProyecto] = useState({
-        nombre:nombreProyecto
+
+    const [tienda, setTIenda] = useState({
+        nombre:nombreTienda,
+        direccion:direccionTIenda
     })
 
-    const {nombre}=proyecto;
+    const {nombre, direccion}=tienda;
 
     useEffect(() => {
         document.getElementById("nombre").focus();
@@ -28,28 +31,29 @@ const ProtectosEditar = () => {
 
 
     const onChange=(e)=>{
-        setProyecto({
-            ...proyecto,
+        setTIenda({
+            ...tienda,
             [e.target.name]:e.target.value
         })
 
     }
 
-    const editarProyecto = async ()=>{
-        let arreglo = idProyecto.split('@')
-        const idproyecto=arreglo[0];
+    const editarTIenda={} = async ()=>{
+        let arreglo = idTienda.split('@')
+        const idT=arreglo[0];
 
         const data={
-            nombre:proyecto.nombre
+            nombre:tienda.nombre,
+            direccion:tienda.direccion
         }
 
-        const response = await APIInvoke.invokePUT(`/proyectos/${idproyecto}`,data)
-        const idProyectoEditar = response.id;
+        const response = await APIInvoke.invokePUT(`/tiendas/${idT}`,data)
+        const idTiendaEditar = response.id;
 
-        if(idProyectoEditar!==idproyecto){
+        if(idTiendaEditar!==idT){
 
             navigate("/proyectos-admin")
-            const msg = "El proyecto fue editado correctamente";
+            const msg = "La tienda fue editada correctamente";
             new swal({
                 title: 'Información',
                 text: msg,
@@ -65,7 +69,7 @@ const ProtectosEditar = () => {
                 }
             });
         }else{
-            const msg = "El proyecto no fue editado correctamente";
+            const msg = "La tienda no fue editada correctamente";
             new swal({
                 title: 'Error',
                 text: msg,
@@ -86,7 +90,7 @@ const ProtectosEditar = () => {
 
     const onSubmit =(e)=>{
         e.preventDefault();
-        editarProyecto();
+        editarTIenda();
     }
 
 
@@ -108,7 +112,7 @@ const ProtectosEditar = () => {
                         <div className="card-header">
                             <div className="card-tools">
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i className="fas fa-times" />
+                                    <i className="fas fa-minus" />
                                 </button>
                                 <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
                                     <i className="fas fa-times" />
@@ -118,9 +122,13 @@ const ProtectosEditar = () => {
                         <div className="card-body">
                             <form  onSubmit={onSubmit} noValidate>
                                 <div className="card-body">
-                                    <div className="form-group">
+                                <div className="form-group">
                                         <label htmlFor="nombre">Nombre:</label>
                                         <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del proyecto" value={nombre} onChange={onChange} required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="nombre">Dirección:</label>
+                                        <input type="text" className="form-control" id="direccion" name="direccion" placeholder="Ingrese su direccion" value={direccion} onChange={onChange} required />
                                     </div>
 
                                 </div>

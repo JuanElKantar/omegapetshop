@@ -7,37 +7,37 @@ import { useNavigate } from "react-router-dom";
 import APIInvoke from "../../utils/APIInvoke";
 import swal from "sweetalert2";
 
-const ProyectosCrear = () => {
+const CrearCategoria = () => {
 
     const navigate=useNavigate()
 
-    const [proyecto, setProyecto] = useState({
+    const [categorias, setCategorias] = useState({
         nombre:''
     })
 
-    const {nombre}=proyecto;
+    const {nombre}=categorias;
 
     useEffect(() => {
         document.getElementById("nombre").focus();
     }, [])
 
     const onChange=(e)=>{
-        setProyecto({
-            ...proyecto,
+        setCategorias({
+            ...categorias,
             [e.target.name]:e.target.value
         })
 
     }
 
-    const crearProyecto = async () =>{
+    const crearCategoria = async () =>{
         const data ={
-            nombre: proyecto.nombre
+            nombre: categorias.nombre
         }
-        const response = await APIInvoke.invokePOST('/proyectos', data);
-        const idProyecto = response.id;
+        const response = await APIInvoke.invokePOST('/categorias', data);
+        const idCategoria = response.id;
 
-        if (idProyecto===""){
-            const msg = "El proyecto no fue creado correctamente";
+        if (idCategoria===""){
+            const msg = "La Categoria no fue registrada correctamente";
             new swal({
                 title: 'Error',
                 text: msg,
@@ -53,8 +53,8 @@ const ProyectosCrear = () => {
                 }
             });
     }else{
-        navigate("/proyectos-admin")
-        const msg = "El proyecto fue creado correctamente";
+        navigate("/visualizar-categorias")
+        const msg = "La Categoria fue creada correctamente";
         new swal({
             title: 'Información',
             text: msg,
@@ -70,14 +70,15 @@ const ProyectosCrear = () => {
             }
         });
 
-        setProyecto({
-            nombre:''
+        setCategorias({
+            nombre:'',
+            direccion:''
         })
     }
     }
     const onSubmit =(e)=>{
         e.preventDefault();
-        crearProyecto()
+        crearCategoria()
     }
 
 
@@ -88,17 +89,17 @@ const ProyectosCrear = () => {
             <div className="content-wrapper">
 
                 <ContentHeader
-                    titulo={"creación de proyectos"}
-                    breadCrumb1={"Listado de proyectos"}
+                    titulo={"creación de categorias"}
+                    breadCrumb1={"Listado de categorias"}
                     breadCrumb2={"creación"}
-                    ruta1={"/proyectos-admin"}
+                    ruta1={"/visualizar-categorias"}
                 />
                 <section className="content">
                     <div className="card">
                         <div className="card-header">
                             <div className="card-tools">
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i className="fas fa-times" />
+                                    <i className="fas fa-minus" />
                                 </button>
                                 <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
                                     <i className="fas fa-times" />
@@ -108,9 +109,9 @@ const ProyectosCrear = () => {
                         <div className="card-body">
                         <form onSubmit={onSubmit} noValidate>
                                 <div className="card-body">
-                                    <div className="form-group">
+                                <div className="form-group">
                                         <label htmlFor="nombre">Nombre:</label>
-                                        <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del proyecto" value={nombre} onChange={onChange} required/>
+                                        <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre de la tienda" value={nombre} onChange={onChange} required/>
                                     </div>
 
                                 </div>
@@ -130,4 +131,4 @@ const ProyectosCrear = () => {
     );
 }
 
-export default ProyectosCrear;
+export default CrearCategoria;

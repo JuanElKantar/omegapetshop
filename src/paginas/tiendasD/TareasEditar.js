@@ -8,69 +8,63 @@ import APIInvoke from "../../utils/APIInvoke";
 import swal from "sweetalert2";
 
 
+const TareasEditar = () => {
 
-const TareasCrear = () => {
 
     const navigate = useNavigate();
 
-    const [tareas, setTareas] = useState({
-        nombre: ''
-    })
-
-    const { nombre } = tareas;
-
-
-
     const { idProyecto } = useParams();
     let arreglo = idProyecto.split('@')
-    const nombreProyecto = arreglo[1]
-    const tituloPag = `Creación de tareas: ${nombreProyecto}`
+    const idProducto= arreglo[0]
+    const nombreProducto = arreglo[1]
+    const precioProducto = arreglo[2]
+    const idTienda = arreglo[3]
+    const idCategoria= arreglo[4]
+    const nombreTienda= arreglo[5]
+    const tituloPag = `Edición de productos: ${nombreTienda}`
 
+
+    const [productos, setproductos] = useState({
+        nombre: nombreProducto,
+        precio:precioProducto,
+        idT:idTienda,
+        idC:idCategoria
+    })
+
+    const { nombre, precio, idC } = productos;
 
     useEffect(() => {
         document.getElementById("nombre").focus();
     }, [])
 
-
     const onChange = (e) => {
-        setTareas({
-            ...tareas,
+        setproductos({
+            ...productos,
             [e.target.name]: e.target.value
         })
 
     }
-
-    const crearTarea = async () => {
+    const editarTarea = async () => {
         let arreglo = idProyecto.split('@')
-        const idproyecto = arreglo[0]
+        const idProducto= arreglo[0]
+
+
 
         const data = {
-            idP: idproyecto,
-            nombre: tareas.nombre
+            idT: idTienda,
+            idC:productos.idC,
+            nombre: productos.nombre,
+            precio:productos.precio,
+            estado: false
         }
 
-        const response = await APIInvoke.invokePOST('/tareas', data);
-        const idTarea = response.id;
+        console.log(data)
+        const response = await APIInvoke.invokePUT(`/productos/${idProducto}`, data);
+        const idTareaEditado = response.id;
 
-        if (idTarea === '') {
-            const msg = "La tarea no fue creada correctamente";
-            new swal({
-                title: 'Error',
-                text: msg,
-                icon: 'error',
-                buttons: {
-                    confirm: {
-                        text: 'Ok',
-                        value: true,
-                        visible: true,
-                        className: 'btn btn-danger',
-                        closeModal: true
-                    }
-                }
-            });
-        } else {
-            navigate(`/tareas-admin/${idProyecto}`)
-            const msg = "La tarea fue creada correctamente";
+        if (idTareaEditado !== idProducto) {
+            navigate(`/tareas-admin/${idTienda}@${nombreTienda}`)
+            const msg = "La tarea fue editada correctamente";
             new swal({
                 title: 'Información',
                 text: msg,
@@ -86,15 +80,33 @@ const TareasCrear = () => {
                 }
             });
 
+        } else {
+
+            const msg = "La tarea no fue editada correctamente";
+            new swal({
+                title: 'Error',
+                text: msg,
+                icon: 'error',
+                buttons: {
+                    confirm: {
+                        text: 'Ok',
+                        value: true,
+                        visible: true,
+                        className: 'btn btn-danger',
+                        closeModal: true
+                    }
+                }
+            });
+
         }
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        crearTarea()
+        editarTarea()
     }
 
-    return (
+    return ( 
         <div className="wrapper">
             <Navbar></Navbar>
             <SidebarContainer></SidebarContainer>
@@ -103,15 +115,15 @@ const TareasCrear = () => {
                 <ContentHeader
                     titulo={tituloPag}
                     breadCrumb1={"Listado de tareas"}
-                    breadCrumb2={"creación"}
-                    ruta1={`/tareas-admin/${idProyecto}`}
+                    breadCrumb2={"Edición"}
+                    ruta1={`/tareas-admin/${idTienda}@${nombreTienda}`}
                 />
                 <section className="content">
                     <div className="card">
                         <div className="card-header">
                             <div className="card-tools">
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i className="fas fa-times" />
+                                    <i className="fas fa-minus" />
                                 </button>
                                 <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
                                     <i className="fas fa-times" />
@@ -121,15 +133,23 @@ const TareasCrear = () => {
                         <div className="card-body">
                             <form onSubmit={onSubmit} noValidate>
                                 <div className="card-body">
-                                    <div className="form-group">
+                                <div className="form-group">
                                         <label htmlFor="nombre">Nombre:</label>
-                                        <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre de la tarea" value={nombre} onChange={onChange} required />
+                                        <input type="text" className="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto" value={nombre} onChange={onChange} required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="tienda">Precio:</label>
+                                        <input type="text" className="form-control" id="precio" name="precio" placeholder="Ingrese el precio del producto" value={precio} onChange={onChange} required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="categoria">Categoria:</label>
+                                        <input type="text" className="form-control" id="categoria" name="idC" placeholder="Ingrese el nombre de la categoria" value={idC} onChange={onChange} required />
                                     </div>
 
                                 </div>
 
                                 <div className="card-footer">
-                                    <button type="submit" className="btn btn-primary">crear</button>
+                                    <button type="submit" className="btn btn-primary">Editar</button>
                                 </div>
                             </form>
 
@@ -140,7 +160,7 @@ const TareasCrear = () => {
             </div>
             <Footer></Footer>
         </div>
-    );
+     );
 }
-
-export default TareasCrear;
+ 
+export default TareasEditar;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import Logo from '../img/LogoOmegaPetShop.PNG';
+import Logo from '../img/logoomegapet.png';
 import { Link } from "react-router-dom";
 import MenuClientes from "./MenuClientes";
 

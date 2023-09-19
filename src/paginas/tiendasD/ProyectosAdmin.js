@@ -5,44 +5,38 @@ import ContentHeader from "../../componentes/contentHeader";
 import Footer from "../../componentes/Footer";
 import APIInvoke from "../../utils/APIInvoke";
 import swal from "sweetalert2";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const TareasAdmin = () => {
+const ProyectosAdmin = () => {
 
+    const [tiendas, setProyectos] = useState([]);
 
-    const [tareas, setTareas] = useState([]);
-
-    const { idProyecto } = useParams();
-    let arreglo = idProyecto.split('@')
-    const idproyecto = arreglo[0]
-    const nombreProyecto = arreglo[1]
-    const tituloPag = `Listado de tareas: ${nombreProyecto}`
-
-    const cargarTareas = async () => {
+    const cargarTiendas = async () => {
         try {
-            var response = await APIInvoke.invokeGET(`/tareas?proyecto=${idproyecto}`);
+            var response = await APIInvoke.invokeGET('/tiendas');
             console.log('Respuesta de la API:', response); // Verifica la respuesta de la API
 
             if (Array.isArray(response) && response.length > 0) {
-                setTareas(response);
+                setProyectos(response);
             } else {
-                console.error('La respuesta de la API no contiene proyectos.');
+                console.error('La respuesta de la API no contiene tiendas.');
             }
         } catch (error) {
             console.error('Error al cargar los proyectos:', error);
         }
     };
 
+
     useEffect(() => {
-        cargarTareas();
+        cargarTiendas();
     }, []);
 
-    const eliminarTarea = async (e, idTarea, idProyecto) => { 
+    const eliminarTienda = async (e, id) => {
         e.preventDefault();
-        const verificarExistenciaTarea = async (idTarea) => {
+        const verificarExistenciaTiendas = async (id) => {
             try {
                 const response = await APIInvoke.invokeGET(
-                    `/tareas?id=${idTarea}`
+                    `/tiendas?id=${id}`
                 );
                 if (response && response.length > 0) {
                     return true; // El usuario ya existe
@@ -54,11 +48,11 @@ const TareasAdmin = () => {
             }
         };
 
-        const tareaExistente = await verificarExistenciaTarea(idTarea);
+        const tiendaExistente = await verificarExistenciaTiendas(id);
 
-        if (tareaExistente) {
-            const response = await APIInvoke.invokeDELETE(`/tareas/${idTarea}?proyecto=${idProyecto}`);
-            const msg = "Tarea Eliminada Correctamente";
+        if (tiendaExistente) {
+            const response = await APIInvoke.invokeDELETE(`/tiendas/${id}`);
+            const msg = "Tienda Eliminada Correctamente";
             new swal({
                 title: "Informacion",
                 text: msg,
@@ -73,9 +67,9 @@ const TareasAdmin = () => {
                     },
                 },
             });
-            cargarTareas();
+            cargarTiendas();
         } else {
-            const msg = "La tarea No Pudo Ser Eliminado";
+            const msg = "La tienda No Pudo Ser Eliminado";
             new swal({
                 title: "Error",
                 text: msg,
@@ -100,18 +94,20 @@ const TareasAdmin = () => {
             <div className="content-wrapper">
 
                 <ContentHeader
-                    titulo={tituloPag}
-                    breadCrumb1={"Listado de proyectos"}
-                    breadCrumb2={"Tareas"}
-                    ruta1={"/proyectos-admin"}
+                    titulo={"Listado de tiendas"}
+                    breadCrumb1={"Inicio"}
+                    breadCrumb2={"Tiendas"}
+                    ruta1={"/home"}
                 />
                 <section className="content">
                     <div className="card">
                         <div className="card-header">
-                            <h3 className="card-title"><Link to={`/tareas-crear/${idProyecto}`} className="btn btn-block btn-primary btn-sm">crear tarea</Link></h3>
+                        <h3 className="card-title"><Link to={"/proyectos-crear"} className="btn btn-block btn-primary btn-sm">Registrar tienda</Link></h3>
                             <div className="card-tools">
+                            <h3 className="card-title" style={{marginRight:'120px'}}><Link to={"/visualizar-pedidos"} className="btn btn-block bg-warning btn-sm">Pedidos</Link></h3>
+
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i className="fas fa-times" />
+                                <i className="fas fa-minus" />
                                 </button>
                                 <button type="button" className="btn btn-tool" data-card-widget="remove" title="Remove">
                                     <i className="fas fa-times" />
@@ -123,22 +119,25 @@ const TareasAdmin = () => {
                                 <thead>
                                     <tr>
                                         <th style={{ width: '10%' }}>#</th>
-                                        <th style={{ width: '75%' }}>Nombre</th>
+                                        <th style={{ width: '40%' }}>Nombre</th>
+                                        <th style={{ width: '35%' }}>Dirección</th>
                                         <th style={{ width: '15%' }}>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        tareas.map(item =>
+                                        tiendas.map((item) => (
                                             <tr key={item.id}>
                                                 <td>{item.id}</td>
                                                 <td>{item.nombre}</td>
+                                                <td>{item.direccion}</td>
                                                 <td>
-                                                    <Link to={`/tareas-editar/${item.id}@${item.nombre}@${item.idP}@${nombreProyecto}`} className="btn btn-sm btn-primary">Editar</Link> &nbsp;&nbsp;
-                                                    <button onClick={(e) => eliminarTarea(e, item.id, item.proyecto)} className="btn btn-sm btn-danger">Borrar</button>
+                                                    <Link to={`/tareas-admin/${item.id}@${item.nombre}@${item.direccion}`} className="btn btn-sm btn-info">Productos</Link> &nbsp;&nbsp;
+                                                    <Link to={`/proyectos-editar/${item.id}@${item.nombre}@${item.direccion}`} className="btn btn-sm btn-primary">Editar</Link> &nbsp;&nbsp;
+                                                    <button onClick={(e) => eliminarTienda(e, item.id)} className="btn btn-sm btn-danger">Borrar</button>
                                                 </td>
                                             </tr>
-                                        )}
+                                        ))}
                                 </tbody>
 
 
@@ -153,4 +152,4 @@ const TareasAdmin = () => {
     );
 }
 
-export default TareasAdmin;
+export default ProyectosAdmin;

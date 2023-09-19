@@ -61,6 +61,12 @@
       "email": "admin@gmail.com",
       "password": "admin123",
       "id": 10
+    },
+    {
+      "nombre": "chato",
+      "email": "chat@gmail.com",
+      "password": "147147",
+      "id": 11
     }
   ],
   "Proyectos": [
