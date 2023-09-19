@@ -24,13 +24,13 @@ const Home=()=>{
                         <div className="col-lg- col-6">
                             <div className="small-box bg-info">
                                 <div className="inner">
-                                    <h3>Proyectos</h3>
+                                    <h3>Productos</h3>
                                     <p>&nbsp;</p>
                                 </div>
                                 <div className="icon">
-                                    <i className="fa fa-edit"></i>
+                                    <i className="fa fa-dog"></i>
                                 </div>
-                                <Link to={"/proyectos-admin"} className="small-box-footer">Ver proyectos <i className="fas fa-arrow-circle-right"></i></Link>
+                                <Link to={"/proyectos-admin"} className="small-box-footer"> Visualizar Productos <i className="fas fa-arrow-circle-right"></i></Link>
                             </div>
                         </div>
                     </div>

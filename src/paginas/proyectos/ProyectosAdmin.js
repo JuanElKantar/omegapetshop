@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar";
-import SidebarContainer from "../../components/SidebarContainer";
-import ContentHeader from "../../components/ContentHeader";
-import Footer from "../../components/Footer";
+import Navbar from "../../componentes/Navbar";
+import SidebarContainer from "../../componentes/SidebarContainer";
+import ContentHeader from "../../componentes/contentHeader";
+import Footer from "../../componentes/Footer";
 import APIInvoke from "../../utils/APIInvoke";
-import swal from "sweetalert";
+import swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const ProyectosAdmin = () => {
@@ -53,7 +53,7 @@ const ProyectosAdmin = () => {
         if (usuarioExistente) {
             const response = await APIInvoke.invokeDELETE(`/proyectos/${id}`);
             const msg = "Proyecto Eliminado Correctamente";
-            swal({
+            new swal({
                 title: "Informacion",
                 text: msg,
                 icon: "success",
@@ -70,7 +70,7 @@ const ProyectosAdmin = () => {
             cargarProyectos();
         } else {
             const msg = "El Proyecto No Pudo Ser Eliminado";
-            swal({
+            new swal({
                 title: "Error",
                 text: msg,
                 icon: "error",

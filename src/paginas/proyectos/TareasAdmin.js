@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar";
-import SidebarContainer from "../../components/SidebarContainer";
-import ContentHeader from "../../components/ContentHeader";
-import Footer from "../../components/Footer";
+import Navbar from "../../componentes/Navbar";
+import SidebarContainer from "../../componentes/SidebarContainer";
+import ContentHeader from "../../componentes/contentHeader";
+import Footer from "../../componentes/Footer";
 import APIInvoke from "../../utils/APIInvoke";
-import swal from "sweetalert";
+import swal from "sweetalert2";
 import { Link, useParams } from "react-router-dom";
 
 const TareasAdmin = () => {
@@ -59,7 +59,7 @@ const TareasAdmin = () => {
         if (tareaExistente) {
             const response = await APIInvoke.invokeDELETE(`/tareas/${idTarea}?proyecto=${idProyecto}`);
             const msg = "Tarea Eliminada Correctamente";
-            swal({
+            new swal({
                 title: "Informacion",
                 text: msg,
                 icon: "success",
@@ -76,7 +76,7 @@ const TareasAdmin = () => {
             cargarTareas();
         } else {
             const msg = "La tarea No Pudo Ser Eliminado";
-            swal({
+            new swal({
                 title: "Error",
                 text: msg,
                 icon: "error",

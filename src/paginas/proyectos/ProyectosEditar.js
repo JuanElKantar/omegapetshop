@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import ContentHeader from "../../components/ContentHeader";
-import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
-import SidebarContainer from "../../components/SidebarContainer";
+import ContentHeader from "../../componentes/contentHeader";
+import Footer from "../../componentes/Footer";
+import Navbar from "../../componentes/Navbar";
+import SidebarContainer from "../../componentes/SidebarContainer";
 import { useNavigate, useParams } from "react-router-dom";
 import APIInvoke from "../../utils/APIInvoke";
-import swal from "sweetalert";
+import swal from "sweetalert2";
 
 const ProtectosEditar = () => {
 
@@ -50,7 +50,7 @@ const ProtectosEditar = () => {
 
             navigate("/proyectos-admin")
             const msg = "El proyecto fue editado correctamente";
-            swal({
+            new swal({
                 title: 'Información',
                 text: msg,
                 icon: 'success',
@@ -66,7 +66,7 @@ const ProtectosEditar = () => {
             });
         }else{
             const msg = "El proyecto no fue editado correctamente";
-            swal({
+            new swal({
                 title: 'Error',
                 text: msg,
                 icon: 'error',
