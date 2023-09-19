@@ -14,9 +14,9 @@ const Home=()=>{
         <div className="content-wrapper">
             
             <ContentHeader
-                titulo={"Dashboard"}
+                titulo={"Panel de Administrador"}
                 breadCrumb1={"Inicio"}
-                breadCrumb2={"Dashboard"}
+                breadCrumb2={"Panel de Administrador"}
                 ruta1={"/home"}
             />
             <section className="content">
@@ -29,7 +29,7 @@ const Home=()=>{
                                     <p>&nbsp;</p>
                                 </div>
                                 <div className="icon">
-                                    <i className="fas fa-store"></i>
+                                    <i className="fas fa-shopping-bag"></i>
                                 </div>
                                 <Link to={"/proyectos-admin"} className="small-box-footer">Ver tiendas<i className="fas fa-arrow-circle-right"></i></Link>
                             </div>  
@@ -41,7 +41,7 @@ const Home=()=>{
                                     <p>&nbsp;</p>
                                 </div>
                                 <div className="icon">
-                                    <i className="fas fa-shopping-cart"></i>
+                                    <i className="fas fa-truck"></i>
                                 </div>
                                 <Link to={"/visualizar-pedidos"} className="small-box-footer">Ver pedidos<i className="fas fa-arrow-circle-right"></i></Link>
                             </div>  
@@ -54,7 +54,7 @@ const Home=()=>{
                                     <p>&nbsp;</p>
                                 </div>
                                 <div className="icon">
-                                    <i className="fas fa-tag"></i>
+                                    <i className="fas fa-tags"></i>
                                 </div>
                                 <Link to={"/visualizar-categorias"} className="small-box-footer">Crear categoria<i className="fas fa-arrow-circle-right"></i></Link>
                             </div>  

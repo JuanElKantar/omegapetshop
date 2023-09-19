@@ -10,10 +10,10 @@ const CrearCuenta = () => {
         email: '',
         password: '',
         confirmar: '',
-        rol:2
+        rol: 'cliente' // Valor predeterminado del rol (puedes cambiarlo según tus necesidades)
     })
 
-    const { nombre, email, password, confirmar } = usuario;
+    const { nombre, email, password, confirmar, rol } = usuario;
     const onChange = (e) => {
         setUsuario(
             {
@@ -27,7 +27,6 @@ const CrearCuenta = () => {
     useEffect(() => {
         document.getElementById("nombre").focus();
     }, [])
-
 
     const crearCuenta = async () => {
 
@@ -85,6 +84,7 @@ const CrearCuenta = () => {
                 nombre: usuario.nombre,
                 email: usuario.email,
                 password: usuario.password,
+                rol: usuario.rol // Asegúrate de enviar el rol seleccionado al servidor
             };
             const response = await APIInvoke.invokePOST(`/Usuarios`, data);
               //console.log(response);
@@ -127,7 +127,8 @@ const CrearCuenta = () => {
                     nombre: '',
                     email: '',
                     password: '',
-                    confirmar: ''
+                    confirmar: '',
+                    rol: 'cliente' // Restablecer el valor predeterminado del rol después de la creación de la cuenta
                 })
             }
         }
@@ -149,51 +150,59 @@ const CrearCuenta = () => {
                     <div className="card-body login-card-body">
                         <p className="login-box-msg">Bienvenido, ingrese sus credenciales</p>
                         <form onSubmit={onSubmit}>
+    <div className="input-group mb-3">
+        <input type="text" className="form-control" placeholder="Nombre" id="nombre" name="nombre" value={nombre} onChange={onChange} required />
+        <div className="input-group-append">
+            <div className="input-group-text">
+                <span className="fas fa-user" />
+            </div>
+        </div>
+    </div>
 
-                            <div className="input-group mb-3">
-                                <input type="text" className="form-control" placeholder="Nombre" id="nombre" name="nombre" value={nombre} onChange={onChange} required />
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fa-solid fa-user" />
+    <div className="input-group mb-3">
+        <input type="email" className="form-control" placeholder="Email" id="email" name="email" value={email} onChange={onChange} required />
+        <div className="input-group-append">
+            <div className="input-group-text">
+                <span className="fas fa-envelope" />
+            </div>
+        </div>
+    </div>
+    <div className="input-group mb-3">
+        <input type="password" className="form-control" placeholder="Contraseña" id="password" name="password" value={password} onChange={onChange} required />
+        <div className="input-group-append">
+            <div className="input-group-text">
+                <span className="fas fa-lock" />
+            </div>
+        </div>
+    </div>
+    <div className="input-group mb-3">
+        <input type="password" className="form-control" placeholder="Confirmar Contraseña" id="confirmar" name="confirmar" value={confirmar} onChange={onChange} required />
+        <div className="input-group-append">
+            <div className="input-group-text">
+                <span className="fas fa-lock" />
+            </div>
+        </div>
+    </div>
+    
+    {/* Agregar el campo de selección de rol */}
+    <div className="input-group mb-3">
+        <label htmlFor="rol">Seleccione su rol:</label>
+        <select className="form-control" id="rol" name="rol" value={rol} onChange={onChange} required>
+            <option value="cliente">Cliente</option>
+            <option value="administrador">Administrador</option>
+        </select>
+    </div>
+    
+    <div className="social-auth-links text-center mb-3">
+        <button type="submit" className="btn btn-block btn-primary">
+            Crear
+        </button>
+        <Link to="/" className="btn btn-block btn-danger">
+            Regresar al omega
+        </Link>
+    </div>
+</form>
 
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="input-group mb-3">
-                                <input type="email" className="form-control" placeholder="Email" id="email" name="email" value={email} onChange={onChange} required />
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-envelope" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="input-group mb-3">
-                                <input type="password" className="form-control" placeholder="Contraseña" id="password" name="password" value={password} onChange={onChange} required />
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fa-solid fa-unlock" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="input-group mb-3">
-                                <input type="password" className="form-control" placeholder="Confirmar Contraseña" id="confirmar" name="confirmar" value={confirmar} onChange={onChange} required />
-                                <div className="input-group-append">
-                                    <div className="input-group-text">
-                                        <span className="fas fa-lock" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="social-auth-links text-center mb-3">
-
-                                <button type="submit" className="btn btn-block btn-primary">
-                                    Crear
-                                </button>
-                                <Link to="/" className="btn btn-block btn-danger">
-                                    Regresar al omega
-                                </Link>
-                            </div>
-                        </form>
                     </div>
 
                 </div>
