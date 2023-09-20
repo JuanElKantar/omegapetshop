@@ -1,18 +1,32 @@
 {
   "Usuarios": [
     {
-      "nombre": "cliente",
-      "email": "cliente@c.com",
-      "password": "111111",
-      "rol": "cliente",
-      "id": 1
-    },
-    {
       "nombre": "admin",
       "email": "admin@a.com",
       "password": "222222",
       "rol": "administrador",
+      "id": 1
+    },
+    {
+      "nombre": "cliente",
+      "email": "cliente@c.com",
+      "password": "111111",
+      "rol": "cliente",
       "id": 2
+    },
+    {
+      "nombre": "chato",
+      "email": "chat@gmail.com",
+      "password": "123456",
+      "rol": "administrador",
+      "id": 3
+    },
+    {
+      "nombre": "petty",
+      "email": "pet@gmail.com",
+      "password": "456789",
+      "rol": "cliente",
+      "id": 4
     }
   ],
   "tiendas": [
@@ -20,34 +34,26 @@
       "nombre": "NewEra",
       "direccion": "Miradores",
       "id": 1
-    },
-    {
-      "nombre": "NewBrands",
-      "direccion": "calle 450",
-      "id": 2
     }
   ],
   "productos": [
     {
       "idT": "1",
-      "idC": "1",
-      "nombre": "collar",
-      "precio": "78888",
+      "idC": "shampoo",
+      "nombre": "shampoo de perrito",
+      "precio": "25000",
       "estado": false,
       "id": 1
-    },
-    {
-      "idT": "2",
-      "idC": "purinas",
-      "nombre": "Purina",
-      "precio": "Monello",
-      "id": 2
     }
   ],
   "categorias": [
     {
       "nombre": "cepillosperro",
       "id": 1
+    },
+    {
+      "nombre": "purinas",
+      "id": 2
     }
   ],
   "ventas": [
@@ -58,6 +64,46 @@
       "direccion": "los yunaites",
       "telefono": "3195208875",
       "id": 1
+    },
+    {
+      "idP": "1",
+      "nombreProd": "collar",
+      "nombre": "Juan Jose",
+      "direccion": "asdadcalle",
+      "telefono": "312312312",
+      "id": 2
+    },
+    {
+      "idP": "1",
+      "nombreProd": "collar",
+      "nombre": "chatopi",
+      "direccion": "calle 10011",
+      "telefono": "31988887070",
+      "id": 3
+    },
+    {
+      "idP": "2",
+      "nombreProd": "Purina",
+      "nombre": "tete",
+      "direccion": "etrete",
+      "telefono": "23432424",
+      "id": 4
+    },
+    {
+      "idP": "2",
+      "nombreProd": "Purina",
+      "nombre": "jose",
+      "direccion": "aadsdas",
+      "telefono": "433242343",
+      "id": 5
+    },
+    {
+      "idP": "1",
+      "nombreProd": "shampoo de perrito",
+      "nombre": "Juan Abreu",
+      "direccion": "calle 4032",
+      "telefono": "3195477878",
+      "id": 6
     }
   ]
 }

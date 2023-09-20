@@ -63,7 +63,7 @@ const realizarVenta = async () => {
 
     if (idV===""){
         const msg = "No se pudo realizar la venta";
-        swal({
+        new swal({
             title: 'Error',
             text: msg,
             icon: 'error',
@@ -80,7 +80,7 @@ const realizarVenta = async () => {
 }else{
     navigate("/home2")
     const msg = "La compra se ha realizado satisfactoriamente";
-    swal({
+    new swal({
         title: 'Información',
         text: msg,
         icon: 'success',

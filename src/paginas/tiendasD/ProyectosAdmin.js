@@ -104,7 +104,7 @@ const ProyectosAdmin = () => {
                         <div className="card-header">
                         <h3 className="card-title"><Link to={"/proyectos-crear"} className="btn btn-block btn-primary btn-sm">Registrar tienda</Link></h3>
                             <div className="card-tools">
-                            <h3 className="card-title" style={{marginRight:'120px'}}><Link to={"/visualizar-pedidos"} className="btn btn-block bg-warning btn-sm">Pedidos</Link></h3>
+                           
 
                                 <button type="button" className="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i className="fas fa-minus" />

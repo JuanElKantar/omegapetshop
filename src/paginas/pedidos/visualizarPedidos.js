@@ -38,7 +38,7 @@ const VisualizarPedidos = () => {
         <div className="content-wrapper">
 
             <ContentHeader
-                titulo={"Productos"}
+                titulo={"Pedidos"}
                 breadCrumb1={"Inicio"}
                 breadCrumb2={"Pedidos"}
                 ruta1={"/home"}

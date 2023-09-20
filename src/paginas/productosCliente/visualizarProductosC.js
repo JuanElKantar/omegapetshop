@@ -9,17 +9,17 @@ import { useEffect, useState } from "react";
 
 const VisualizarProd = () => {
     const [productos, setproductos] = useState([]);
-    const { idProd } = useParams();
-    let tituloPag = "";
-    let nombreTienda = "";
-    let idTienda = "";
+    const { idProducto } = useParams();
+
+    let arreglo = idProducto.split('@');
+            const idTienda = arreglo[0];
+            var nombreTien = arreglo[1];
+            const tituloPag = `Listado de productos: ${nombreTien}`
+            console.log(nombreTien);
 
     useEffect(() => {
-        if (idProd) {
-            let arreglo = idProd.split('@');
-            idTienda = arreglo[0];
-            nombreTienda = arreglo[1];
-            tituloPag = `Listado de productos: ${nombreTienda}`;
+        if (idProducto) {
+            
 
             const cargarProductos = async () => {
                 try {
@@ -38,7 +38,7 @@ const VisualizarProd = () => {
 
             cargarProductos();
         }
-    }, [idProd]);
+    }, [idProducto]);
 
     return (
         <div className="wrapper">
@@ -81,10 +81,10 @@ const VisualizarProd = () => {
                                             <td>{item.id}</td>
                                             <td>{item.nombre}</td>
                                             <td>{item.precio}</td>
-                                            <td>{nombreTienda}</td>
+                                            <td>{nombreTien}</td>
                                             <td>{item.idC}</td>
                                             <td>
-                                                <Link to={`/compra/${item.id}@${item.nombre}@${idTienda}@${nombreTienda}`} className="btn btn-sm btn-primary">Comprar</Link>
+                                                <Link to={`/compra/${item.id}@${item.nombre}@${idTienda}@${nombreTien}`} className="btn btn-sm btn-primary">Comprar</Link>
                                             </td>
                                         </tr>
                                     ))}

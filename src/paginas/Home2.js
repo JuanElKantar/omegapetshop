@@ -7,26 +7,7 @@ import APIInvoke from "../utils/APIInvoke";
 import { useEffect, useState } from "react";
 
 const Home2 = () => {
-    const [tiendas, setTiendas] = useState([]);
 
-    const cargarTiendas = async () => {
-        try {
-            var response = await APIInvoke.invokeGET(`/tiendas`);
-            console.log('Respuesta de la API:', response); 
-
-            if (Array.isArray(response) && response.length > 0) {
-                setTiendas(response);
-            } else {
-                console.error('La respuesta de la API no contiene categorias.');
-            }
-        } catch (error) {
-            console.error('Error al cargar los categorias:', error);
-        }
-    };
-
-    useEffect(() => {
-        cargarTiendas();
-    }, []);
 
 
     return (
@@ -36,9 +17,9 @@ const Home2 = () => {
             <div className="content-wrapper">
 
                 <ContentHeader
-                    titulo={"Dashboard"}
+                    titulo={"Panel para Clientes"}
                     breadCrumb1={"Inicio"}
-                    breadCrumb2={"Dashboard"}
+                    breadCrumb2={"Panel para Clientes"}
                     ruta1={"/home2"}
                 />
                 <section className="content">
@@ -46,34 +27,28 @@ const Home2 = () => {
                         <div className="row">
 
         
+                        <div className="col-lg-7 col-8">
+    <div className="small-box bg-pink">
+        <div className="inner">
+            <h3>Tiendas</h3>
+            <p>&nbsp;</p>
+        </div>
+        <div className="icon">
+            <i className="fas fa-shopping-bag"></i>
+        </div>
+        <Link to="/VerTiendasClientes"  className="small-box-footer">
+            Ver Tiendas <i className="fas fa-arrow-circle-right"></i>
+        </Link>
+    </div>
+</div>
 
-                        {tiendas.map((item, index) => {
-                                const colorClasses = ['bg-success','bg-light', 'bg-danger', 'bg-warning' ];
-                                const currentColorClass = colorClasses[index % colorClasses.length];
-
-                                return (
-                                    <div key={index} className={`col-lg- col-6 `}>
-                                        <div className={`small-box ${currentColorClass}`}>
-                                            <div className="inner">
-                                                <h3>{item.nombre}</h3>
-                                                <p>&nbsp;</p>
-                                            </div>
-                                            <div className="icon">
-                                                <i className="fas fa-shopping-bag"></i>
-                                            </div>
-                                            <Link to={`/visualizar-prod/${item.id}@${item.nombre}`} className="small-box-footer">
-                                                Ver {item.nombre}<i className="fas fa-arrow-circle-right"></i>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-
+                                    
 
                         </div>
                     </div>
                 </section>
             </div>
+            
             <Footer></Footer>
         </div>
     );

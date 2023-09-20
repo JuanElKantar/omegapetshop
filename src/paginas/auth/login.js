@@ -142,9 +142,7 @@ const Login = () => {
                                         <label htmlFor="remember">Remember Me</label>
                                     </div>
                                 </div>
-                                <div className="col-4">
-                                    <button type="submit" className="btn btn-primary btn-block">Sign In</button>
-                                </div>
+
                             </div>
                             <div className="social-auth-links text-center mb-3">
                                 <button type="submit" className="btn btn-block btn-primary">Iniciar sesión</button>

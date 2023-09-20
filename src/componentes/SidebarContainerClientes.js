@@ -8,7 +8,7 @@ const SidebarContainerClientes = () => {
     
 return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
-        <Link to={"/home"} className="brand-link">
+        <Link to={"/home2"} className="brand-link">
             <img
                 src={Logo}
                 alt="AdminLTE Logo"

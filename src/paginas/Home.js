@@ -20,8 +20,8 @@ const Home = () => {
         <section className="content">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-6 col-12">
-                <div className="small-box bg-primary">
+              <div className="col-lg-7 col-8">
+                <div className="small-box bg-red">
                   <div className="inner">
                     <h3>Tiendas</h3>
                     <p>&nbsp;</p>
@@ -34,22 +34,9 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              <div className="col-lg-6 col-12">
-                <div className="small-box bg-warning">
-                  <div className="inner">
-                    <h3>Pedidos</h3>
-                    <p>&nbsp;</p>
-                  </div>
-                  <div className="icon">
-                    <i className="fas fa-truck"></i>
-                  </div>
-                  <Link to={"/visualizar-pedidos"} className="small-box-footer">
-                    Ver pedidos <i className="fas fa-arrow-circle-right"></i>
-                  </Link>
-                </div>
-              </div>
-              <div className="col-lg-6 col-12">
-                <div className="small-box bg-secondary">
+
+              <div className="col-lg-7 col-8">
+                <div className="small-box bg-orange">
                   <div className="inner">
                     <h3>Categoría</h3>
                     <p>&nbsp;</p>
@@ -62,6 +49,21 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
+              <div className="col-lg-7 col-8">
+                <div className="small-box bg-purple">
+                  <div className="inner">
+                    <h3>Pedidos</h3>
+                    <p>&nbsp;</p>
+                  </div>
+                  <div className="icon">
+                    <i className="fas fa-truck"></i>
+                  </div>
+                  <Link to={"/visualizar-pedidos"} className="small-box-footer">
+                    Ver pedidos <i className="fas fa-arrow-circle-right"></i>
+                  </Link>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>

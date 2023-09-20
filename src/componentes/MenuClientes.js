@@ -20,15 +20,14 @@ const MenuClientes=()=>{
                     </Link>
                 </li>
 
-            <li className="nav-item" style={listItemStyle}>
-                    <Link to={"/visualizar-prod"} className="nav-link">
-                        <i className="fas fa-shopping-bag" />
+                <li className="nav-item" style={listItemStyle}>
+                    <Link to={"/verTiendasClientes"} className="nav-link">
+                        <i className="nav-icon fas fa-shopping-bag" />
                         <p>
-                            Productos
+                            Ver Tiendas
                         </p>
                     </Link>
                 </li>
-
 
             </ul>
         </nav>
