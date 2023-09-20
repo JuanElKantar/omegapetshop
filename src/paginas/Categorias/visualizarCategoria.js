@@ -95,7 +95,7 @@ const VisualizarCategorias = () => {
 
             <ContentHeader
                 titulo={"Categorias"}
-                breadCrumb1={"Home"}
+                breadCrumb1={"Inicio"}
                 breadCrumb2={"Categorias"}
                 ruta1={"/home"}
             />

@@ -17,9 +17,14 @@
   ],
   "tiendas": [
     {
-      "nombre": "petty",
-      "direccion": "calle 80",
+      "nombre": "NewEra",
+      "direccion": "Miradores",
       "id": 1
+    },
+    {
+      "nombre": "NewBrands",
+      "direccion": "calle 450",
+      "id": 2
     }
   ],
   "productos": [
@@ -30,6 +35,13 @@
       "precio": "78888",
       "estado": false,
       "id": 1
+    },
+    {
+      "idT": "2",
+      "idC": "purinas",
+      "nombre": "Purina",
+      "precio": "Monello",
+      "id": 2
     }
   ],
   "categorias": [
@@ -44,7 +56,7 @@
       "nombreProd": "algo",
       "nombre": "Juanalimaña",
       "direccion": "los yunaites",
-      "telefono": "3191111111",
+      "telefono": "3195208875",
       "id": 1
     }
   ]

@@ -12,7 +12,7 @@ const Home2 = () => {
     const cargarTiendas = async () => {
         try {
             var response = await APIInvoke.invokeGET(`/tiendas`);
-            console.log('Respuesta de la API:', response); // Verifica la respuesta de la API
+            console.log('Respuesta de la API:', response); 
 
             if (Array.isArray(response) && response.length > 0) {
                 setTiendas(response);

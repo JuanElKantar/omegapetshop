@@ -1,52 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Menu=()=>{
-    return(
+const Menu = () => {
+  const listItemStyle = {
+    fontSize: "20px", // Tamaño de fuente más grande
+    marginBottom: "10px", // Espacio entre elementos más grande
+  };
 
-        <nav className="mt-2">
-            <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+  return (
+    <nav className="mt-2">
+      <ul
+        className="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <li className="nav-item" style={listItemStyle}>
+          <Link to={"/home"} className="nav-link">
+            <i className="nav-icon fas fa-home" />
+            <p>Inicio</p>
+          </Link>
+        </li>
 
-            <li className="nav-item">
-                    <Link to={"/home"} className="nav-link">
-                        <i className="nav-icon fas fa-th" />
-                        <p>
-                            Inicio
-                        </p>
-                    </Link>
-                </li>
+        <li className="nav-item" style={listItemStyle}>
+          <Link to={"/proyectos-admin"} className="nav-link">
+            <i className="nav-icon fas fa-shopping-bag" />
+            <p>Tiendas</p>
+          </Link>
+        </li>
 
-                <li className="nav-item">
-                    <Link to={"/proyectos-admin"} className="nav-link">
-                        <i className="nav-icon fas fa-store" />
-                        <p>
-                            Tiendas
-                        </p>
-                    </Link>
-                </li>
+        <li className="nav-item" style={listItemStyle}>
+          <Link to={"/visualizar-categorias"} className="nav-link">
+            <i className="nav-icon fas fa-laptop" />
+            <p>Categorias</p>
+          </Link>
+        </li>
 
-                <li className="nav-item">
-                    <Link to={"/visualizar-categorias"} className="nav-link">
-                        <i className="nav-icon fas fa-tag" />
-                        <p>
-                            Categorias
-                        </p>
-                    </Link>
-                </li>
-
-                <li className="nav-item">
-                    <Link to={"/visualizar-pedidos"} className="nav-link">
-                        <i className="nav-icon fas fa-truck" />
-                        <p>
-                            Pedidos
-                        </p>
-                    </Link>
-                </li>
-            </ul>
-        </nav>
-
-        
-    )
-}
+        <li className="nav-item" style={listItemStyle}>
+          <Link to={"/visualizar-pedidos"} className="nav-link">
+            <i className="nav-icon fas fa-truck" />
+            <p>Pedidos</p>
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
 export default Menu;

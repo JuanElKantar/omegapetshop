@@ -39,7 +39,7 @@ const VisualizarPedidos = () => {
 
             <ContentHeader
                 titulo={"Productos"}
-                breadCrumb1={"Home"}
+                breadCrumb1={"Inicio"}
                 breadCrumb2={"Pedidos"}
                 ruta1={"/home"}
             />
