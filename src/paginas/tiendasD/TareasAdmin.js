@@ -101,7 +101,7 @@ const TareasAdmin = () => {
 
                 <ContentHeader
                     titulo={tituloPag}
-                    breadCrumb1={"Listado de proyectos"}
+                    breadCrumb1={" de proyectos"}
                     breadCrumb2={"Tareas"}
                     ruta1={"/proyectos-admin"}
                 />

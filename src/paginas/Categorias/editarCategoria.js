@@ -100,7 +100,7 @@ const EditarCategoria = () => {
             <div className="content-wrapper">
 
                 <ContentHeader
-                    titulo={"Edición de proyectos"}
+                    titulo={"Edición de categorías"}
                     breadCrumb1={"Listado de proyectos"}
                     breadCrumb2={"Edición"}
                     ruta1={"/proyectos-admin"}

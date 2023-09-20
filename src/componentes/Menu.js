@@ -33,6 +33,15 @@ const Menu=()=>{
                         </p>
                     </Link>
                 </li>
+
+                <li className="nav-item">
+                    <Link to={"/visualizar-pedidos"} className="nav-link">
+                        <i className="nav-icon fas fa-truck" />
+                        <p>
+                            Pedidos
+                        </p>
+                    </Link>
+                </li>
             </ul>
         </nav>
 

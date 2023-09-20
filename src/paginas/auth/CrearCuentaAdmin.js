@@ -95,7 +95,7 @@ const CrearCuentaAdmin = () => {
 
             if (usuarioExistente) {
                 const msg = 'El usuario ya existe'
-                swal({
+                new swal({
                     title: 'Error',
                     text: msg,
                     icon: 'error',
